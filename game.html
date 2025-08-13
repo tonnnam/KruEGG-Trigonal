@@ -1,87 +1,72 @@
 <!DOCTYPE html>
-
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เกมตรีโกณมิติ - ด่านไม่จำกัด</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="[https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js](https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js)"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+        @import url('[https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap)');
 
-```
-    body {
-        font-family: 'Kanit', sans-serif;
-    }
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e1b4b, #7c3aed, #ec4899);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #d97706, #ea580c);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            transition: all 0.3s ease;
+        }
+        .btn-success:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .difficulty-easy { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .difficulty-medium { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .difficulty-hard { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+        .difficulty-expert { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
 
-    .gradient-bg {
-        background: linear-gradient(135deg, #1e1b4b, #7c3aed, #ec4899);
-    }
+        .feedback-correct { background: rgba(16, 185, 129, 0.2); border-left: 4px solid #10b981; }
+        .feedback-wrong { background: rgba(239, 68, 68, 0.2); border-left: 4px solid #ef4444; }
+        .feedback-hint { background: rgba(245, 158, 11, 0.2); border-left: 4px solid #f59e0b; }
 
-    .glass-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-        transform: scale(1.05);
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
-    }
-
-    .btn-secondary {
-        background: linear-gradient(135deg, #f59e0b, #f97316);
-        transition: all 0.3s ease;
-    }
-
-    .btn-secondary:hover {
-        transform: scale(1.05);
-        background: linear-gradient(135deg, #d97706, #ea580c);
-    }
-
-    .btn-success {
-        background: linear-gradient(135deg, #10b981, #059669);
-        transition: all 0.3s ease;
-    }
-
-    .btn-success:hover {
-        transform: scale(1.05);
-        background: linear-gradient(135deg, #059669, #047857);
-    }
-
-    .animate-pulse-slow {
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-
-    .difficulty-easy { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-    .difficulty-medium { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
-    .difficulty-hard { background: rgba(249, 115, 22, 0.2); color: #f97316; }
-    .difficulty-expert { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
-
-    .feedback-correct { background: rgba(16, 185, 129, 0.2); border-left: 4px solid #10b981; }
-    .feedback-wrong { background: rgba(239, 68, 68, 0.2); border-left: 4px solid #ef4444; }
-    .feedback-hint { background: rgba(245, 158, 11, 0.2); border-left: 4px solid #f59e0b; }
-
-    input:focus {
-        outline: none;
-        border-color: #fbbf24;
-        box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
-    }
-</style>
-```
-
+        input:focus {
+            outline: none;
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+    </style>
 </head>
 <body class="gradient-bg min-h-screen">
     <div class="container mx-auto px-6 py-8 max-w-2xl">
-        <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 flex items-center justify-center gap-3">
-                🔢 เกมตรีโกณมิติ 
+                🔢 เกมตรีโกณมิติ
                 <svg class="w-8 h-8 text-yellow-400 animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm4.64-1.96l3.54 3.54 7.07-7.07 1.41 1.41L9.18 17.4l-4.95-4.95 1.41-1.41z"/>
                 </svg>
@@ -89,111 +74,100 @@
             <p class="text-purple-200 text-lg">ด่านไม่จำกัด - ระดับมัธยมปลาย</p>
         </div>
 
-```
-    <!-- Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div class="glass-card rounded-lg p-4 text-center">
-            <div class="text-2xl font-bold text-white" id="level-display">1</div>
-            <div class="text-sm text-purple-200">ด่านปัจจุบัน</div>
-        </div>
-        <div class="glass-card rounded-lg p-4 text-center">
-            <div class="text-2xl font-bold text-yellow-400 flex items-center justify-center gap-1">
-                ⭐ <span id="score-display">0</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="glass-card rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white" id="level-display">1</div>
+                <div class="text-sm text-purple-200">ด่านปัจจุบัน</div>
             </div>
-            <div class="text-sm text-purple-200">คะแนน</div>
-        </div>
-        <div class="glass-card rounded-lg p-4 text-center">
-            <div class="text-2xl font-bold text-orange-400 flex items-center justify-center gap-1">
-                🔥 <span id="streak-display">0</span>
-            </div>
-            <div class="text-sm text-purple-200">ต่อเนื่อง</div>
-        </div>
-        <div class="glass-card rounded-lg p-4 text-center">
-            <div class="text-2xl font-bold text-green-400" id="best-streak-display">0</div>
-            <div class="text-sm text-purple-200">สูงสุด</div>
-        </div>
-    </div>
-
-    <!-- Difficulty Badge -->
-    <div class="flex justify-center mb-6">
-        <div class="rounded-full px-4 py-2 font-semibold" id="difficulty-badge">
-            ระดับความยาก: ง่าย
-        </div>
-    </div>
-
-    <!-- Game Card -->
-    <div class="glass-card rounded-xl p-8 shadow-2xl">
-        <!-- Problem -->
-        <div class="mb-8">
-            <div class="bg-white bg-opacity-20 rounded-lg p-6 mb-4">
-                <h3 class="text-xl font-semibold text-white mb-2">โจทย์:</h3>
-                <p class="text-lg text-purple-100" id="question-display">กำลังโหลด...</p>
-            </div>
-
-            <!-- Answer Input -->
-            <div class="mb-4">
-                <input
-                    type="text"
-                    id="answer-input"
-                    placeholder="ใส่คำตอบของคุณ..."
-                    class="w-full p-4 border-2 border-white border-opacity-30 rounded-lg text-lg bg-white bg-opacity-10 text-white placeholder-purple-200"
-                />
-            </div>
-
-            <!-- Buttons -->
-            <div class="flex gap-3 mb-4">
-                <button
-                    id="check-btn"
-                    class="flex-1 btn-primary text-white py-3 px-6 rounded-lg font-semibold"
-                >
-                    ตรวจคำตอบ
-                </button>
-                <button
-                    id="hint-btn"
-                    class="btn-secondary text-white py-3 px-6 rounded-lg font-semibold"
-                >
-                    ขอคำใบ้
-                </button>
-            </div>
-
-            <!-- Hint -->
-            <div id="hint-display" class="hidden feedback-hint p-4 mb-4 rounded">
-                <p class="text-yellow-100">
-                    <strong>คำใบ้:</strong> <span id="hint-text"></span>
-                </p>
-            </div>
-
-            <!-- Feedback -->
-            <div id="feedback-display" class="hidden p-4 rounded-lg mb-4">
-                <div class="flex items-start gap-2">
-                    <span id="feedback-icon"></span>
-                    <pre class="whitespace-pre-wrap" id="feedback-text"></pre>
+            <div class="glass-card rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-yellow-400 flex items-center justify-center gap-1">
+                    ⭐ <span id="score-display">0</span>
                 </div>
+                <div class="text-sm text-purple-200">คะแนน</div>
             </div>
+            <div class="glass-card rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-orange-400 flex items-center justify-center gap-1">
+                    🔥 <span id="streak-display">0</span>
+                </div>
+                <div class="text-sm text-purple-200">ต่อเนื่อง</div>
+            </div>
+            <div class="glass-card rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-green-400" id="best-streak-display">0</div>
+                <div class="text-sm text-purple-200">สูงสุด</div>
+            </div>
+        </div>
 
-            <!-- Next Button -->
+        <div class="flex justify-center mb-6">
+            <div id="difficulty-badge" class="rounded-full px-4 py-2 font-semibold">
+                ระดับความยาก: ง่าย
+            </div>
+        </div>
+
+        <div class="glass-card rounded-xl p-8 shadow-2xl">
+            <div class="mb-8">
+                <div class="bg-white bg-opacity-20 rounded-lg p-6 mb-4">
+                    <h3 class="text-xl font-semibold text-white mb-2">โจทย์:</h3>
+                    <p class="text-lg text-purple-100" id="question-display">กำลังโหลด...</p>
+                </div>
+
+                <div class="mb-4">
+                    <input
+                        type="text"
+                        id="answer-input"
+                        placeholder="ใส่คำตอบ (ทศนิยม 3 ตำแหน่ง หรือตามโจทย์)"
+                        class="w-full p-4 border-2 border-white border-opacity-30 rounded-lg text-lg bg-white bg-opacity-10 text-white placeholder-purple-200"
+                    />
+                </div>
+
+                <div class="flex gap-3 mb-4">
+                    <button
+                        id="check-btn"
+                        class="flex-1 btn-primary text-white py-3 px-6 rounded-lg font-semibold"
+                    >
+                        ตรวจคำตอบ
+                    </button>
+                    <button
+                        id="hint-btn"
+                        class="btn-secondary text-white py-3 px-6 rounded-lg font-semibold"
+                    >
+                        ขอคำใบ้
+                    </button>
+                </div>
+
+                <div id="hint-display" class="hidden feedback-hint p-4 mb-4 rounded">
+                    <p class="text-yellow-100">
+                        <strong>คำใบ้:</strong> <span id="hint-text"></span>
+                    </p>
+                </div>
+
+                <div id="feedback-display" class="hidden p-4 rounded-lg mb-4">
+                    <div class="flex items-start gap-2">
+                        <span id="feedback-icon" class="text-xl"></span>
+                        <pre class="whitespace-pre-wrap font-sans" id="feedback-text"></pre>
+                    </div>
+                </div>
+
+                <button
+                    id="next-btn"
+                    class="hidden w-full btn-success text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2"
+                >
+                    ไปด่านต่อไป
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8.59 16.34L13.17 12L8.59 7.66L10 6.24L16.76 12L10 17.76L8.59 16.34Z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center mt-6">
             <button
-                id="next-btn"
-                class="hidden w-full btn-success text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2"
+                id="reset-btn"
+                class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-6 rounded-lg font-semibold transition-colors"
             >
-                ไปด่านต่อไป
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8.59 16.34L13.17 12L8.59 7.66L10 6.24L16.76 12L10 17.76L8.59 16.34Z"/>
-                </svg>
+                เริ่มเกมใหม่
             </button>
         </div>
     </div>
-
-    <!-- Reset Button -->
-    <div class="text-center mt-6">
-        <button
-            id="reset-btn"
-            class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-6 rounded-lg font-semibold transition-colors"
-        >
-            เริ่มเกมใหม่
-        </button>
-    </div>
-</div>
 
 <script>
     class TrigonometryGame {
@@ -203,7 +177,6 @@
             this.streak = 0;
             this.bestStreak = 0;
             this.currentProblem = null;
-            this.isCorrect = null;
             this.showingHint = false;
 
             this.initializeElements();
@@ -241,7 +214,13 @@
             
             this.elements.answerInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    this.checkAnswer();
+                    // Prevent form submission if it's inside a form
+                    e.preventDefault(); 
+                    if (!this.elements.nextBtn.classList.contains('hidden')) {
+                         this.nextLevel();
+                    } else {
+                         this.checkAnswer();
+                    }
                 }
             });
         }
@@ -252,36 +231,34 @@
                 () => {
                     const angles = [0, 30, 45, 60, 90, 120, 135, 150, 180];
                     const functions = ['sin', 'cos', 'tan'];
-                    const angle = angles[Math.floor(Math.random() * 6)]; // เฉพาะมุมพื้นฐาน
+                    const angle = angles[Math.floor(Math.random() * angles.length)]; // FIX: Use full array length
                     const func = functions[Math.floor(Math.random() * 3)];
                     
                     const values = {
-                        sin: { 0: '0', 30: '0.5', 45: '0.707', 60: '0.866', 90: '1', 120: '0.866', 135: '0.707', 150: '0.5' },
-                        cos: { 0: '1', 30: '0.866', 45: '0.707', 60: '0.5', 90: '0', 120: '-0.5', 135: '-0.707', 150: '-0.866' },
-                        tan: { 0: '0', 30: '0.577', 45: '1', 60: '1.732', 120: '-1.732', 135: '-1', 150: '-0.577' }
+                        sin: { 0: '0', 30: '0.5', 45: '0.707', 60: '0.866', 90: '1', 120: '0.866', 135: '0.707', 150: '0.5', 180: '0' },
+                        cos: { 0: '1', 30: '0.866', 45: '0.707', 60: '0.5', 90: '0', 120: '-0.5', 135: '-0.707', 150: '-0.866', 180: '-1' },
+                        tan: { 0: '0', 30: '0.577', 45: '1', 60: '1.732', 90: 'undefined', 120: '-1.732', 135: '-1', 150: '-0.577', 180: '0' }
                     };
                     
                     const answer = values[func][angle];
-                    if (!answer) return this.generateProblem(level);
+                    if (answer === 'undefined') return this.generateProblem(level); // Re-roll if tan(90)
                     
                     return {
-                        question: `หา ${func}(${angle}°)`,
+                        question: `หาค่าของ ${func}(${angle}°)`,
                         answer: answer,
-                        alternatives: this.getAlternatives(func, angle, answer),
-                        hint: `ใช้วงกลมหน่วยหรือสามเหลี่ยมมุมฉากพิเศษ`,
-                        explanation: `${func}(${angle}°) = ${answer}`
+                        hint: `ใช้วงกลมหนึ่งหน่วย หรือสามเหลี่ยมมุมฉากพื้นฐาน (30-60-90 หรือ 45-45-90)`,
+                        explanation: `${func}(${angle}°) ≈ ${answer}`
                     };
                 },
 
                 // Pythagorean identity (Level 4-6)
                 () => {
-                    const angle = [30, 45, 60][Math.floor(Math.random() * 3)];
+                    const angle = [30, 45, 60, 120][Math.floor(Math.random() * 4)];
                     return {
-                        question: `หา sin²(${angle}°) + cos²(${angle}°)`,
+                        question: `หาค่าของ sin²(${angle}°) + cos²(${angle}°)`,
                         answer: '1',
-                        alternatives: ['1', '1.0'],
-                        hint: 'Pythagorean identity: sin²θ + cos²θ = 1',
-                        explanation: `sin²(${angle}°) + cos²(${angle}°) = 1 (สำหรับทุกมุม θ)`
+                        hint: 'เอกลักษณ์พีทาโกรัส: sin²(θ) + cos²(θ) = 1 สำหรับทุกๆ มุม θ',
+                        explanation: `จากเอกลักษณ์ sin²(θ) + cos²(θ) = 1 เสมอ ดังนั้นคำตอบคือ 1`
                     };
                 },
 
@@ -303,119 +280,77 @@
                     };
                     
                     return {
-                        question: `หา ${func}(${doubleAngle}°) โดยใช้สูตรมุมคู่`,
+                        question: `หาค่าของ ${func}(${doubleAngle}°)`,
                         answer: answer,
-                        alternatives: this.getAlternatives(func, doubleAngle, answer),
-                        hint: hints[func],
-                        explanation: `${func}(${doubleAngle}°) = ${answer}`
+                        hint: `ใช้สูตรมุมสองเท่า: ${hints[func]}`,
+                        explanation: `จากสูตรมุมสองเท่า, ${func}(${doubleAngle}°) ≈ ${answer}`
                     };
                 },
 
-                // Sum formulas (Level 6+)
+                // Sum/Difference formulas (Level 7+)
                 () => {
-                    const angle1 = [30, 45][Math.floor(Math.random() * 2)];
-                    const angle2 = [30, 45][Math.floor(Math.random() * 2)];
+                    const angle1 = [30, 45, 60][Math.floor(Math.random() * 3)];
+                    const angle2 = [30, 45, 60][Math.floor(Math.random() * 3)];
+                    if (angle1 === angle2) return this.generateProblem(level); // Avoid easy questions like 30-30=0
                     const operation = Math.random() > 0.5 ? '+' : '-';
                     const func = ['sin', 'cos'][Math.floor(Math.random() * 2)];
                     
                     const resultAngle = operation === '+' ? angle1 + angle2 : Math.abs(angle1 - angle2);
                     
                     const values = {
-                        sin: { 0: '0', 15: '0.259', 30: '0.5', 45: '0.707', 60: '0.866', 75: '0.966', 90: '1' },
-                        cos: { 0: '1', 15: '0.966', 30: '0.866', 45: '0.707', 60: '0.5', 75: '0.259', 90: '0' }
+                        sin: { 15: '0.259', 75: '0.966', 90: '1', 105: '0.966', 120: '0.866' },
+                        cos: { 15: '0.966', 75: '0.259', 90: '0', 105: '-0.259', 120: '-0.5' }
                     };
                     
                     const answer = values[func][resultAngle];
+                     if (!answer) return this.generateProblem(level); // Re-roll if combination is not in the list
                     const hints = {
-                        sin: `sin(A±B) = sin(A)cos(B) ± cos(A)sin(B)`,
-                        cos: `cos(A±B) = cos(A)cos(B) ∓ sin(A)sin(B)`
+                        sin: `sin(A ± B) = sin(A)cos(B) ± cos(A)sin(B)`,
+                        cos: `cos(A ± B) = cos(A)cos(B) ∓ sin(A)sin(B)`
                     };
                     
                     return {
-                        question: `หา ${func}(${angle1}° ${operation} ${angle2}°)`,
+                        question: `หาค่าของ ${func}(${angle1}° ${operation} ${angle2}°)`,
                         answer: answer,
-                        alternatives: [answer],
-                        hint: hints[func],
-                        explanation: `${func}(${angle1}° ${operation} ${angle2}°) = ${func}(${resultAngle}°) = ${answer}`
+                        hint: `ใช้สูตรผลบวก/ผลต่างมุม: ${hints[func]}`,
+                        explanation: `${func}(${angle1}° ${operation} ${angle2}°) = ${func}(${resultAngle}°) ≈ ${answer}`
                     };
                 },
 
-                // Complex problems (Level 8+)
+                // Solve Equations (Level 8+)
                 () => {
-                    const complexProblems = [
+                    const problemData = [
                         {
-                            q: 'ถ้า sin(θ) = 3/5 และ θ อยู่ในจตุภาค I หา cos(θ)',
-                            a: '0.8',
-                            alt: ['4/5', '0.8'],
-                            h: 'ใช้ sin²θ + cos²θ = 1',
-                            e: 'cos²(θ) = 1 - sin²(θ) = 1 - 9/25 = 16/25\nดังนั้น cos(θ) = 4/5 = 0.8'
+                            q: 'แก้สมการ 2sin(x) - 1 = 0 สำหรับ 0° ≤ x < 360° (ตอบมุมเป็นองศา คั่นด้วยจุลภาค ,)',
+                            a: ['30', '150'],
+                            h: 'ย้ายข้างสมการเพื่อหาค่า sin(x) แล้วหามุมในวงกลมหนึ่งหน่วย',
+                            e: 'จาก 2sin(x) - 1 = 0 จะได้ sin(x) = 1/2 ดังนั้น x = 30° และ 150°'
                         },
                         {
-                            q: 'ถ้า tan(θ) = 4/3 หา sin(θ) (ค่าบวก)',
-                            a: '0.8',
-                            alt: ['4/5', '0.8'],
-                            h: 'ใช้ความสัมพันธ์ระหว่าง tan, sin, cos',
-                            e: 'ถ้า tan(θ) = 4/3 แล้ว sin(θ)/cos(θ) = 4/3\nและ sin²θ + cos²θ = 1\nจะได้ sin(θ) = 4/5 = 0.8'
-                        },
-                        {
-                            q: 'แก้สมการ 2sin(x) - 1 = 0 สำหรับ 0° ≤ x ≤ 360°',
-                            a: '30, 150',
-                            alt: ['30 และ 150', '30°, 150°', '30, 150'],
-                            h: 'แก้หา sin(x) = 1/2 แล้วหามุมในช่วงที่กำหนด',
-                            e: 'sin(x) = 1/2\nดังนั้น x = 30° และ x = 150°'
+                            q: 'ถ้า sin(θ) = 3/5 และ θ อยู่ในจตุภาคที่ 1, หาค่าของ cos(θ) (ตอบเป็นทศนิยม)',
+                            a: ['0.8'],
+                            h: 'ใช้เอกลักษณ์ sin²(θ) + cos²(θ) = 1',
+                            e: 'cos²(θ) = 1 - (3/5)² = 1 - 9/25 = 16/25\nในจตุภาคที่ 1, cos(θ) เป็นบวก ดังนั้น cos(θ) = 4/5 = 0.8'
                         }
                     ];
                     
-                    const problem = complexProblems[Math.floor(Math.random() * complexProblems.length)];
-                    
+                    const problem = problemData[Math.floor(Math.random() * problemData.length)];
                     return {
                         question: problem.q,
-                        answer: problem.a,
-                        alternatives: problem.alt,
+                        answer: problem.a, // Answer is now an array
                         hint: problem.h,
-                        explanation: problem.e
+                        explanation: problem.e,
+                        isEquation: true // Add a flag for special answer checking
                     };
                 }
             ];
 
-            // เลือกประเภทโจทย์ตามระดับ
-            if (level <= 3) {
-                return problems[0]();
-            } else if (level <= 5) {
-                return Math.random() > 0.5 ? problems[0]() : problems[1]();
-            } else if (level <= 7) {
-                const choices = [problems[0], problems[1], problems[2]];
-                return choices[Math.floor(Math.random() * choices.length)]();
-            } else if (level <= 10) {
-                const choices = [problems[1], problems[2], problems[3]];
-                return choices[Math.floor(Math.random() * choices.length)]();
-            } else {
-                const choices = [problems[2], problems[3], problems[4]];
-                return choices[Math.floor(Math.random() * choices.length)]();
-            }
-        }
-
-        getAlternatives(func, angle, answer) {
-            const alternatives = [answer];
-            
-            const fractionMap = {
-                '0.5': '1/2',
-                '0.707': '√2/2',
-                '0.866': '√3/2',
-                '0.577': '√3/3',
-                '1.732': '√3',
-                '-0.5': '-1/2',
-                '-0.707': '-√2/2',
-                '-0.866': '-√3/2',
-                '-0.577': '-√3/3',
-                '-1.732': '-√3'
-            };
-            
-            if (fractionMap[answer]) {
-                alternatives.push(fractionMap[answer]);
-            }
-            
-            return alternatives;
+            // Select problem type based on level
+            if (level <= 3) return problems[0]();
+            if (level <= 5) return Math.random() < 0.4 ? problems[1]() : problems[0]();
+            if (level <= 7) return [problems[0], problems[1], problems[2]][Math.floor(Math.random() * 3)]();
+            if (level <= 10) return [problems[1], problems[2], problems[3]][Math.floor(Math.random() * 3)]();
+            return [problems[2], problems[3], problems[4]][Math.floor(Math.random() * 3)]();
         }
 
         generateNewProblem() {
@@ -424,14 +359,13 @@
             this.hideHint();
             this.hideFeedback();
             this.hideNextButton();
-            this.isCorrect = null;
         }
 
         getDifficulty() {
             if (this.currentLevel <= 3) return { name: 'ง่าย', class: 'difficulty-easy' };
             if (this.currentLevel <= 6) return { name: 'ปานกลาง', class: 'difficulty-medium' };
             if (this.currentLevel <= 10) return { name: 'ยาก', class: 'difficulty-hard' };
-            return { name: 'ยากมาก', class: 'difficulty-expert' };
+            return { name: 'เชี่ยวชาญ', class: 'difficulty-expert' };
         }
 
         updateDisplay() {
@@ -448,54 +382,59 @@
 
         checkAnswer() {
             const userAnswer = this.elements.answerInput.value.trim();
-            
             if (!userAnswer) {
                 this.showFeedback('กรุณาใส่คำตอบ', 'hint');
                 return;
             }
 
-            const normalizedAnswer = userAnswer.toLowerCase();
-            const correctAnswers = [
-                this.currentProblem.answer.toLowerCase(),
-                ...this.currentProblem.alternatives.map(a => a.toLowerCase())
-            ];
+            let isCorrect = false;
+            if (this.currentProblem.isEquation) {
+                // Handle multi-part answers (e.g., "30, 150")
+                const correctValues = this.currentProblem.answer;
+                const userValues = userAnswer.split(',').map(val => val.trim()).sort();
+                isCorrect = correctValues.length === userValues.length && correctValues.every((val, index) => val === userValues[index]);
+            } else {
+                // Handle single numeric answers
+                const correctAnswer = this.currentProblem.answer;
+                isCorrect = userAnswer === correctAnswer;
+            }
             
-            if (correctAnswers.includes(normalizedAnswer)) {
-                this.isCorrect = true;
-                const points = Math.max(5, 15 - Math.floor(this.currentLevel / 3));
+            if (isCorrect) {
+                const points = Math.max(5, 15 - Math.floor(this.currentLevel / 2));
                 this.score += points;
-                this.streak += 1;
+                this.streak++;
                 this.bestStreak = Math.max(this.bestStreak, this.streak);
                 
-                this.showFeedback(`ถูกต้อง! +${points} คะแนน\n${this.currentProblem.explanation}`, 'correct');
+                this.showFeedback(`ถูกต้อง! +${points} คะแนน\n\nคำอธิบาย:\n${this.currentProblem.explanation}`, 'correct');
                 this.showNextButton();
             } else {
-                this.isCorrect = false;
                 this.streak = 0;
-                this.showFeedback(`ผิด! คำตอบที่ถูกคือ ${this.currentProblem.answer}\n${this.currentProblem.explanation}`, 'wrong');
+                const correctAnswerText = Array.isArray(this.currentProblem.answer) 
+                    ? this.currentProblem.answer.join(', ') 
+                    : this.currentProblem.answer;
+                this.showFeedback(`ผิด! คำตอบที่ถูกต้องคือ: ${correctAnswerText}\n\nคำอธิบาย:\n${this.currentProblem.explanation}`, 'wrong');
+                 this.showNextButton(); // Show next button even if wrong
             }
             
             this.updateDisplay();
         }
 
         showFeedback(message, type) {
-            const icons = {
-                correct: '✅',
-                wrong: '❌',
-                hint: '💡'
-            };
-            
-            const classes = {
-                correct: 'feedback-correct text-green-100',
-                wrong: 'feedback-wrong text-red-100',
-                hint: 'feedback-hint text-yellow-100'
-            };
-            
+            const icons = { correct: '✅', wrong: '❌', hint: '💡' };
+            const feedbackClasses = { correct: 'feedback-correct', wrong: 'feedback-wrong', hint: 'feedback-hint' };
+            const textClasses = { correct: 'text-green-100', wrong: 'text-red-100', hint: 'text-yellow-100' };
+
             this.elements.feedbackIcon.textContent = icons[type];
             this.elements.feedbackText.textContent = message;
-            this.elements.feedbackText.className = classes[type];
-            this.elements.feedbackDisplay.className = `p-4 rounded-lg mb-4 ${classes[type].split(' ')[0]}`;
-            this.elements.feedbackDisplay.classList.remove('hidden');
+
+            // IMPROVEMENT: Use classList for safer class management
+            const feedbackDisplay = this.elements.feedbackDisplay;
+            feedbackDisplay.classList.remove('feedback-correct', 'feedback-wrong', 'feedback-hint', 'hidden');
+            feedbackDisplay.classList.add(feedbackClasses[type]);
+            
+            const feedbackText = this.elements.feedbackText;
+            feedbackText.classList.remove('text-green-100', 'text-red-100', 'text-yellow-100');
+            feedbackText.classList.add(textClasses[type]);
         }
 
         hideFeedback() {
@@ -525,14 +464,21 @@
 
         showNextButton() {
             this.elements.nextBtn.classList.remove('hidden');
+            this.elements.checkBtn.classList.add('hidden');
+            this.elements.hintBtn.classList.add('hidden');
+            this.elements.answerInput.disabled = true;
         }
 
         hideNextButton() {
             this.elements.nextBtn.classList.add('hidden');
+            this.elements.checkBtn.classList.remove('hidden');
+            this.elements.hintBtn.classList.remove('hidden');
+            this.elements.answerInput.disabled = false;
+            this.elements.answerInput.focus();
         }
 
         nextLevel() {
-            this.currentLevel += 1;
+            this.currentLevel++;
             this.elements.answerInput.value = '';
             this.generateNewProblem();
             this.updateDisplay();
@@ -542,18 +488,17 @@
             this.currentLevel = 1;
             this.score = 0;
             this.streak = 0;
+            // Note: bestStreak is not reset by design, to keep the player's record
             this.elements.answerInput.value = '';
             this.generateNewProblem();
             this.updateDisplay();
         }
     }
 
-    // เริ่มเกมเมื่อหน้าเว็บโหลดเสร็จ
+    // Start the game when the page is fully loaded
     document.addEventListener('DOMContentLoaded', () => {
         new TrigonometryGame();
     });
 </script>
-```
-
 </body>
 </html>
