@@ -107,7 +107,7 @@ else:
         if st.session_state.reset_input:
             st.session_state.user_input = ""
             st.session_state.reset_input = False
-        user_input = st.text_input("คำตอบของคุณ (เช่น 3/5, 0.6, √3/2):", value=st.session_state.user_input)
+        user_input = st.text_input("คำตอบของคุณ (เช่น 3/5, ทศนิยมมากกว่า2ตำแหน่ง, √3/2):", value=st.session_state.user_input)
         submitted = st.form_submit_button("ตรวจคำตอบ")
 
     if submitted:
