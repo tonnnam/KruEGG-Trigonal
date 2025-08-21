@@ -70,6 +70,7 @@ if "level" not in st.session_state:
     st.session_state.feedback = ""
     st.session_state.correct_flag = False
     st.session_state.user_input = ""
+    st.session_state.reset_input = False
 
 # ---------------------- UI ----------------------
 st.title("🎯 Triangle Trig Game")
@@ -80,6 +81,11 @@ st.code(st.session_state.question)
 
 # แบบฟอร์มคำตอบ
 with st.form(key="answer_form"):
+    # รีเซ็ต input ถ้ากำลังไปด่านใหม่
+    if st.session_state.reset_input:
+        st.session_state.user_input = ""
+        st.session_state.reset_input = False
+
     user_input = st.text_input(
         "คำตอบของคุณ (เช่น 3/5, 0.6, √3/2):",
         value=st.session_state.user_input,
@@ -88,7 +94,7 @@ with st.form(key="answer_form"):
     submitted = st.form_submit_button("ตรวจคำตอบ")
 
 if submitted:
-    st.session_state.user_input = user_input  # เก็บ input ล่าสุด
+    st.session_state.user_input = user_input
     correct = st.session_state.answer
     if check_answer(user_input, correct):
         st.session_state.feedback = "✅ ถูกต้อง!"
@@ -100,9 +106,9 @@ if submitted:
         st.session_state.score = 0
         st.session_state.question, st.session_state.answer = ask_basic_trig()
         st.session_state.correct_flag = False
-        st.session_state.user_input = ""  # ล้างคำตอบเก่า
+        st.session_state.reset_input = True  # ล้าง input
 
-# แสดงผล feedback
+# แสดง feedback
 if st.session_state.feedback:
     st.info(st.session_state.feedback)
 
@@ -116,8 +122,7 @@ if st.session_state.correct_flag:
             st.session_state.question, st.session_state.answer = ask_law_of_sines()
         else:
             st.session_state.question, st.session_state.answer = ask_law_of_cosines()
-        
-        # รีเซ็ต flag, feedback, และ input
+
         st.session_state.correct_flag = False
         st.session_state.feedback = ""
-        st.session_state.user_input = ""
+        st.session_state.reset_input = True  # ล้างคำตอบด่านเก่า
