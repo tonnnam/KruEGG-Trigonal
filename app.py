@@ -74,6 +74,7 @@ if "level" not in st.session_state:
     st.session_state.score = 0
     st.session_state.question, st.session_state.answer = ask_basic_trig()
     st.session_state.feedback = ""
+    st.session_state.correct_flag = False
 
 
 # ---------------------- UI ----------------------
@@ -83,7 +84,7 @@ st.write(f"**ด่าน {st.session_state.level}** | คะแนน: {st.sess
 st.write("โจทย์:")
 st.code(st.session_state.question)
 
-# ใช้ st.form เพื่อกดตรวจทีเดียว
+# แบบฟอร์มคำตอบ
 with st.form(key="answer_form"):
     user_input = st.text_input("คำตอบของคุณ (เช่น 3/5, 0.6, √3/2):")
     submitted = st.form_submit_button("ตรวจคำตอบ")
@@ -93,21 +94,28 @@ if submitted:
     if check_answer(user_input, correct):
         st.session_state.feedback = "✅ ถูกต้อง!"
         st.session_state.score += 1
-        st.session_state.level += 1
+        st.session_state.correct_flag = True   # ✅ แค่ตั้ง flag
+    else:
+        st.session_state.feedback = f"❌ ผิด! คำตอบที่ถูกคือ {correct}\nเริ่มใหม่ที่ด่าน 1"
+        st.session_state.level = 1
+        st.session_state.score = 0
+        st.session_state.question, st.session_state.answer = ask_basic_trig()
+        st.session_state.correct_flag = False  # reset
 
-        # เปลี่ยนโจทย์ตาม level
+# แสดงผล
+if st.session_state.feedback:
+    st.info(st.session_state.feedback)
+
+# ถ้าตอบถูก -> โชว์ปุ่ม "ไปด่านถัดไป"
+if st.session_state.correct_flag:
+    if st.button("➡️ ไปด่านถัดไป"):
+        st.session_state.level += 1
         if st.session_state.level <= 10:
             st.session_state.question, st.session_state.answer = ask_basic_trig()
         elif st.session_state.level <= 20:
             st.session_state.question, st.session_state.answer = ask_law_of_sines()
         else:
             st.session_state.question, st.session_state.answer = ask_law_of_cosines()
-    else:
-        st.session_state.feedback = f"❌ ผิด! คำตอบที่ถูกคือ {correct}\nเริ่มใหม่ที่ด่าน 1"
-        st.session_state.level = 1
-        st.session_state.score = 0
-        st.session_state.question, st.session_state.answer = ask_basic_trig()
-
-# แสดงผลการตรวจ
-if st.session_state.feedback:
-    st.info(st.session_state.feedback)
+        st.session_state.correct_flag = False
+        st.session_state.feedback = ""
+        st.experimental_rerun()
