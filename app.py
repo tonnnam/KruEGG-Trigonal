@@ -5,6 +5,19 @@ import re
 
 st.set_page_config(page_title="Triangle Trig Game", page_icon="🎯")
 
+# ใส่โค้ดนี้ไว้ใกล้ๆ กับส่วน import ด้านบน
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# ---------------------- UI ----------------------
+st.title("🎯 Triangle Trig Game")
+local_css("style.css") # <<< เรียกใช้ฟังก์ชันนี้ตรงนี้
+
+# --- หน้า Game Over ---
+if st.session_state.game_over:
+    # ... (โค้ดส่วนที่เหลือเหมือนเดิม)
+
 # ---------------------- ฟังก์ชันช่วยตรวจคำตอบ ----------------------
 def parse_answer(user_input: str):
     user_input = user_input.strip()
