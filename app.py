@@ -4,13 +4,12 @@ import random
 import re
 
 st.set_page_config(page_title="Triangle Trig Game", page_icon="🎯")
-
 # ใส่โค้ดนี้ไว้ใกล้ๆ กับส่วน import ด้านบน
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# ––––––––––– ฟังก์ชันช่วยตรวจคำตอบ –––––––––––
+# ---------------------- ฟังก์ชันช่วยตรวจคำตอบ ----------------------
 def parse_answer(user_input: str):
     user_input = user_input.strip()
     user_input = user_input.replace("√", "math.sqrt")
@@ -31,7 +30,7 @@ def check_answer(user_input, correct_value, tol=0.01):
         return False
     return abs(val - correct_value) < tol
 
-# ––––––––––– ฟังก์ชันสร้างโจทย์ –––––––––––
+# ---------------------- ฟังก์ชันสร้างโจทย์ ----------------------
 def ask_basic_trig():
     funcs = ["sin", "cos", "tan"]
     func = random.choice(funcs)
@@ -72,7 +71,7 @@ def ask_law_of_cosines():
     c = math.sqrt(a**2 + b**2 - 2*a*b*math.cos(math.radians(C)))
     return f"จากกฎของโคไซน์: ถ้า a = {a}, b = {b}, C = {C}°\nจงหาความยาวด้าน c", c, "text", None
 
-# —– ฟังก์ชันกลางสำหรับสร้างโจทย์ใหม่ตามด่าน —–
+# ----- ฟังก์ชันกลางสำหรับสร้างโจทย์ใหม่ตามด่าน -----
 def generate_new_question():
     level = st.session_state.level
     if level <= 10:
@@ -81,13 +80,14 @@ def generate_new_question():
         q_data = ask_law_of_sines()
     else:
         q_data = ask_law_of_cosines()
-
+    
     st.session_state.question, st.session_state.answer, st.session_state.qtype, st.session_state.options = q_data
     st.session_state.correct_flag = False
     st.session_state.feedback = ""
     st.session_state.user_input = ""
 
-# ––––––––––– Init Session –––––––––––
+
+# ---------------------- Init Session ----------------------
 def init_game():
     st.session_state.level = 1
     st.session_state.score = 0
@@ -98,11 +98,11 @@ def init_game():
 if "level" not in st.session_state:
     init_game()
 
-# ––––––––––– UI –––––––––––
+# ---------------------- UI ----------------------
 st.title("🎯 Triangle Trig Game")
-local_css("style.css") # เรียกใช้ฟังก์ชันนี้ตรงนี้
+local_css("style.css") # <<< เรียกใช้ฟังก์ชันนี้ตรงนี้
 
-# — หน้า Game Over —
+# --- หน้า Game Over ---
 if st.session_state.game_over:
     st.error("### GAME OVER! 💔")
     st.write(f"คุณทำคะแนนได้ทั้งหมด: **{st.session_state.score}** คะแนน")
@@ -110,7 +110,7 @@ if st.session_state.game_over:
         init_game()
         st.rerun()
 
-# — หน้าเล่นเกม —
+# --- หน้าเล่นเกม ---
 else:
     # แสดงผล Level, Score, Lives
     col1, col2, col3 = st.columns(3)
@@ -170,10 +170,11 @@ else:
             st.success(st.session_state.feedback)
         else:
             st.error(st.session_state.feedback)
-
+    
     # ถ้าตอบถูก -> โชว์ปุ่ม "ไปด่านถัดไป"
     if st.session_state.correct_flag:
         if st.button("➡️ ไปด่านถัดไป"):
             st.session_state.level += 1
             generate_new_question()
             st.rerun()
+
