@@ -99,7 +99,7 @@ if "level" not in st.session_state:
     init_game()
 
 # ---------------------- UI ----------------------
-st.title("🎯 Triangle Trig Game")
+st.title("🎯 Triangle Trig Game byKASIDIS LAKTAN")
 local_css("style.css") # <<< เรียกใช้ฟังก์ชันนี้ตรงนี้
 
 # --- หน้า Game Over ---
