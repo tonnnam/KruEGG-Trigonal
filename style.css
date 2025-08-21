@@ -115,3 +115,78 @@ h2 {
   text-align: center;
 }
 
+/* 🌈 พื้นหลังรวม */
+body {
+  background: linear-gradient(135deg, #1e3c72, #2a5298); /* ฟ้า-น้ำเงิน */
+  font-family: 'Arial', sans-serif;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🎯 กล่องสถิติ (ด่าน / คะแนน / ชีวิต) */
+.stats-box {
+  display: inline-block;
+  background: linear-gradient(135deg, #3a6186, #89253e);
+  padding: 15px 25px;
+  margin: 10px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease;
+}
+
+.stats-box:hover {
+  transform: scale(1.08);
+}
+
+/* 📘 โจทย์ */
+.question {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 30px 0 15px 0;
+  color: #ffeb3b;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+/* 🔘 ตัวเลือกคำตอบ */
+.option {
+  display: block;
+  background: #2c3e50;
+  margin: 10px auto;
+  padding: 12px;
+  width: 200px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s ease;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
+}
+
+.option:hover {
+  background: #34495e;
+  transform: scale(1.05);
+}
+
+/* 🟠 ปุ่มตรวจคำตอบ */
+button {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  color: white;
+  font-size: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+}
+
