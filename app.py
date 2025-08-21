@@ -4,7 +4,7 @@ import random
 
 st.set_page_config(page_title="Triangle Trig Game", page_icon="🎯")
 
-# ฟังก์ชันโจทย์
+# ---------------------- ฟังก์ชันโจทย์ ----------------------
 def ask_basic_trig():
     funcs = ["sin", "cos", "tan"]
     func = random.choice(funcs)
@@ -39,31 +39,37 @@ def ask_law_of_cosines():
     return f"ให้ a = {a}, b = {b}, C = {C}°\nจงหา c (ทศนิยม 2 ตำแหน่ง)", c
 
 
-# =================== เกมหลัก ===================
+# ---------------------- Init Session ----------------------
 if "level" not in st.session_state:
     st.session_state.level = 1
     st.session_state.score = 0
     st.session_state.question, st.session_state.answer = ask_basic_trig()
+    st.session_state.feedback = ""
 
+
+# ---------------------- UI ----------------------
 st.title("🎯 Triangle Trig Game")
 st.write(f"**ด่าน {st.session_state.level}** | คะแนน: {st.session_state.score}")
 
 st.write("โจทย์:")
 st.code(st.session_state.question)
 
-user_input = st.text_input("คำตอบของคุณ:")
+# ใช้ st.form เพื่อให้กด Submit แล้วค่อยตรวจ
+with st.form(key="answer_form"):
+    user_input = st.text_input("คำตอบของคุณ:")
+    submitted = st.form_submit_button("ตรวจคำตอบ")
 
-if st.button("ตรวจคำตอบ"):
+if submitted:
     try:
         ans = float(user_input)
         correct = st.session_state.answer
 
         if abs(ans - correct) < 0.05:
-            st.success("✅ ถูกต้อง!")
+            st.session_state.feedback = "✅ ถูกต้อง!"
             st.session_state.score += 1
             st.session_state.level += 1
 
-            # เปลี่ยนประเภทโจทย์ตามด่าน
+            # เปลี่ยนโจทย์ตาม level
             if st.session_state.level <= 10:
                 st.session_state.question, st.session_state.answer = ask_basic_trig()
             elif st.session_state.level <= 20:
@@ -71,9 +77,13 @@ if st.button("ตรวจคำตอบ"):
             else:
                 st.session_state.question, st.session_state.answer = ask_law_of_cosines()
         else:
-            st.error(f"❌ ผิด! คำตอบที่ถูกคือ {correct}")
+            st.session_state.feedback = f"❌ ผิด! คำตอบที่ถูกคือ {correct}\nเริ่มใหม่ที่ด่าน 1"
             st.session_state.level = 1
             st.session_state.score = 0
             st.session_state.question, st.session_state.answer = ask_basic_trig()
     except:
-        st.warning("⚠️ ใส่ตัวเลขเท่านั้น")
+        st.session_state.feedback = "⚠️ ใส่ตัวเลขเท่านั้น"
+
+# แสดงผลการตรวจ
+if st.session_state.feedback:
+    st.info(st.session_state.feedback)
