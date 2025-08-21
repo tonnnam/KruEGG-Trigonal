@@ -168,8 +168,10 @@ else:
     if st.session_state.feedback:
         if st.session_state.correct_flag:
             st.success(st.session_state.feedback)
+            st.markdown(f"<h1 style='font-size:60px; text-align:center'>💖</h1>", unsafe_allow_html=True)
         else:
             st.error(st.session_state.feedback)
+            st.markdown(f"<div class='heart-float'>💔</div>", unsafe_allow_html=True)
     
     # ถ้าตอบถูก -> โชว์ปุ่ม "ไปด่านถัดไป"
     if st.session_state.correct_flag:
