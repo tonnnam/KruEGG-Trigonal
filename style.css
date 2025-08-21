@@ -1,192 +1,153 @@
-/* -------------------- Background & Font -------------------- */
+/* ------------------- พื้นหลังหลัก ------------------- */
 body {
-    background-color: #1e1e2f;
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-}
-
-/* -------------------- Titles & Headings -------------------- */
-h1, h2, h3 {
-    color: #ffcc00;
-    font-weight: bold;
-    text-align: center;
-}
-
-h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 28px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-/* -------------------- Container Boxes -------------------- */
-.stContainer {
-    background-color: #2e2e4d;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-}
-
-/* -------------------- Buttons -------------------- */
-.stButton>button {
-    background-color: #ff6600 !important;
-    color: white !important;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 15px;
-    padding: 12px 25px;
-    margin-top: 10px;
-    width: 100%;
-    transition: all 0.2s ease;
-}
-
-.stButton>button:hover {
-    background-color: #ff9933 !important;
-    transform: scale(1.05);
-}
-
-/* -------------------- Radio / Options -------------------- */
-.stRadio>div {
-    background-color: #33334d;
-    border-radius: 12px;
-    padding: 10px;
-    margin-bottom: 5px;
-}
-
-.stRadio label {
-    color: #ffffff;
-    font-size: 18px;
-}
-
-/* -------------------- Text Input -------------------- */
-.stTextInput>div>input {
-    background-color: #33334d;
-    color: white;
-    border-radius: 12px;
-    padding: 10px;
-    font-size: 18px;
-    width: 100%;
-}
-
-/* -------------------- Feedback -------------------- */
-.feedback-success {
-    color: #00ff00;
-    font-weight: bold;
-    font-size: 22px;
-    text-align: center;
-}
-
-.feedback-error {
-    color: #ff3333;
-    font-weight: bold;
-    font-size: 22px;
-    text-align: center;
-}
-
-/* -------------------- Level / Score / Lives -------------------- */
-.stMetric {
-    background-color: #2e2e4d !important;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-}
-
-.stMetric div {
-    color: #ffcc00 !important;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-/* -------------------- Animation หัวใจลอยแตก -------------------- */
-@keyframes floatHeart {
-  0% {transform: translateY(0) scale(1);}
-  50% {transform: translateY(-50px) scale(1.5);}
-  100% {transform: translateY(-100px) scale(0);}
-}
-
-.heart-float {
-  display: inline-block;
-  animation: floatHeart 1s ease forwards;
-  font-size: 50px;
-  text-align: center;
-}
-
-/* 🌈 พื้นหลังรวม */
-body {
-  background: linear-gradient(135deg, #1e3c72, #2a5298); /* ฟ้า-น้ำเงิน */
-  font-family: 'Arial', sans-serif;
-  color: white;
-  text-align: center;
   margin: 0;
-  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* 🎯 กล่องสถิติ (ด่าน / คะแนน / ชีวิต) */
-.stats-box {
-  display: inline-block;
-  background: linear-gradient(135deg, #3a6186, #89253e);
+/* ------------------- กล่องเกม ------------------- */
+.main {
+  background: rgba(20, 20, 40, 0.95);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* ------------------- กล่องสถิติ ------------------- */
+.stat-box {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  background: #2a2a40;
   padding: 15px 25px;
-  margin: 10px;
-  border-radius: 15px;
-  font-size: 18px;
-  font-weight: bold;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
-  transition: transform 0.2s ease;
-}
-
-.stats-box:hover {
-  transform: scale(1.08);
-}
-
-/* 📘 โจทย์ */
-.question {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 30px 0 15px 0;
-  color: #ffeb3b;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-}
-
-/* 🔘 ตัวเลือกคำตอบ */
-.option {
-  display: block;
-  background: #2c3e50;
-  margin: 10px auto;
-  padding: 12px;
-  width: 200px;
   border-radius: 12px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: 0.2s ease;
-  box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
-}
-
-.option:hover {
-  background: #34495e;
-  transform: scale(1.05);
-}
-
-/* 🟠 ปุ่มตรวจคำตอบ */
-button {
-  background: linear-gradient(135deg, #ff512f, #dd2476);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
-  font-size: 20px;
-  padding: 12px 25px;
+}
+
+/* ------------------- ปุ่ม ------------------- */
+button {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
   border: none;
-  border-radius: 15px;
+  border-radius: 30px;
+  padding: 12px 25px;
+  color: white;
+  font-size: 1.1rem;
   cursor: pointer;
-  margin-top: 20px;
-  font-weight: bold;
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
-  transition: 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-  transform: scale(1.1);
-  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
+button:active {
+  transform: scale(0.95);
+}
+
+/* ------------------- คำถาม ------------------- */
+.question-box {
+  margin: 20px 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background: #1f1f33;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+/* ------------------- ช้อยส์ (Radio) ------------------- */
+.stRadio label {
+  display: block;
+  background: #2a2a40;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  text-align: left;
+}
+
+.stRadio label:hover {
+  background: #383857;
+  transform: translateX(5px);
+}
+
+/* เมื่อเลือก */
+.stRadio input[type="radio"]:checked + label {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  border-color: #ff758c;
+}
+
+/* ------------------- เอฟเฟกต์ถูก/ผิด ------------------- */
+.stRadio label.correct {
+  border-color: #28a745 !important;
+  background: rgba(40, 167, 69, 0.2) !important;
+  animation: pulseCorrect 0.6s;
+}
+
+.stRadio label.wrong {
+  border-color: #dc3545 !important;
+  background: rgba(220, 53, 69, 0.2) !important;
+  animation: shakeWrong 0.4s;
+}
+
+/* ------------------- Feedback ------------------- */
+.feedback {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ------------------- เอฟเฟกต์หัวใจ ------------------- */
+.heart {
+  position: absolute;
+  font-size: 24px;
+  color: red;
+  animation: floatUp 1s forwards;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
+}
+
+/* ------------------- Animation ------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseCorrect {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shakeWrong {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
