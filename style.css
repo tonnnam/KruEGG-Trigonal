@@ -100,3 +100,18 @@ h2 {
     font-weight: bold;
     font-size: 20px;
 }
+
+/* -------------------- Animation หัวใจลอยแตก -------------------- */
+@keyframes floatHeart {
+  0% {transform: translateY(0) scale(1);}
+  50% {transform: translateY(-50px) scale(1.5);}
+  100% {transform: translateY(-100px) scale(0);}
+}
+
+.heart-float {
+  display: inline-block;
+  animation: floatHeart 1s ease forwards;
+  font-size: 50px;
+  text-align: center;
+}
+
