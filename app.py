@@ -227,4 +227,3 @@ if st.session_state.correct_flag:
         st.session_state.level += 1
         generate_new_question()
         st.rerun()
-```
