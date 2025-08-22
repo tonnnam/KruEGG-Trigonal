@@ -101,6 +101,7 @@ if "level" not in st.session_state:
 # ---------------------- UI ----------------------
 st.title("🎯 Triangle Trig Game byKASIDIS LAKTAN")
 local_css("style.css") # <<< เรียกใช้ฟังก์ชันนี้ตรงนี้
+local_js("script.js")
 
 # --- หน้า Game Over ---
 if st.session_state.game_over:
