@@ -110,7 +110,6 @@ if "level" not in st.session_state:
 # ---------------------- UI ----------------------
 st.title("🎯 Triangle Trig Game byKASIDIS LAKTAN")
 local_css("style.css") # <<< เรียกใช้ฟังก์ชันนี้ตรงนี้
-local_js("script.js")
 
 # --- หน้า Game Over ---
 if st.session_state.game_over:
@@ -177,11 +176,35 @@ else:
     # แสดง feedback
     if st.session_state.feedback:
         if st.session_state.correct_flag:
-            st.success(st.session_state.feedback)
-            st.markdown(f"<h1 style='font-size:60px; text-align:center'>💖</h1>", unsafe_allow_html=True)
-        else:
-            st.error(st.session_state.feedback)
-            st.markdown(f"<div class='heart-float'>💔</div>", unsafe_allow_html=True)
+        st.success(st.session_state.feedback)
+        # หัวใจลอยตอนตอบถูก
+        st.components.v1.html("""
+        <div style="position:fixed; top:50%; left:50%; font-size:60px; z-index:9999; 
+                    animation: heartFloat 2s ease-out forwards; pointer-events:none; 
+                    transform:translate(-50%,-50%);">💖</div>
+        <style>
+        @keyframes heartFloat {
+            0% { opacity:1; transform:translate(-50%,-50%) scale(0.5); }
+            50% { transform:translate(-50%,-60%) scale(1.2); }
+            100% { opacity:0; transform:translate(-50%,-80%) scale(0.8); }
+        }
+        </style>
+        """, height=0)
+    else:
+        st.error(st.session_state.feedback)
+        # หัวใจแตกตอนตอบผิด  
+        st.components.v1.html("""
+        <div style="position:fixed; top:50%; left:50%; font-size:60px; z-index:9999; 
+                    animation: heartBreak 2s ease-out forwards; pointer-events:none; 
+                    transform:translate(-50%,-50%);">💔</div>
+        <style>
+        @keyframes heartBreak {
+            0% { opacity:1; transform:translate(-50%,-50%) scale(1); }
+            50% { transform:translate(-50%,-40%) scale(1.3) rotate(10deg); }
+            100% { opacity:0; transform:translate(-50%,-80%) scale(0.5) rotate(-10deg); }
+        }
+        </style>
+        """, height=0)
     
     # ถ้าตอบถูก -> โชว์ปุ่ม "ไปด่านถัดไป"
     if st.session_state.correct_flag:
