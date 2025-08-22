@@ -8,6 +8,15 @@ st.set_page_config(page_title="Triangle Trig Game", page_icon="🎯")
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+        
+def local_js(file_name):
+    with open(file_name, 'r', encoding='utf-8') as f:
+        js_code = f.read()
+    st.components.v1.html(f"""
+    <script>
+    {js_code}
+    </script>
+    """, height=0)
 
 # ---------------------- ฟังก์ชันช่วยตรวจคำตอบ ----------------------
 def parse_answer(user_input: str):
